@@ -207,6 +207,14 @@
   .video-link::before{content:'▶';font-size:10px;}
   .video-link:hover{text-decoration:underline;}
 
+  /* embedded videos — same frame treatment as the infographics */
+  .video-embed{background:#fff;border:1px solid var(--edge);border-radius:14px;padding:14px;margin:22px 0 6px;}
+  .video-embed + .video-embed{margin-top:14px;}
+  .video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:9px;overflow:hidden;background:var(--page);}
+  .video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+    .video-caption{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted);margin-top:11px;padding:0 2px;}
+  .video-caption::before{content:'▶';font-size:9px;color:var(--sky);}
+
   /* faq */
   .faq-section{margin-top:88px;padding-top:44px;border-top:1px solid var(--edge);}
   .faq-item{border-top:1px solid var(--edge);}
@@ -685,7 +693,7 @@
           <p><strong>Working in Blender:</strong> If you create or edit 3D models in Blender, export directly to glTF from Blender's built-in exporter. Choose Binary format to create a GLB file. Enable the Compression option to keep the file small. If your model has an animation, enable the Animation export option to include it.</p>
           <p><strong>Reducing file size:</strong> The most common challenge with 3D objects is keeping them under the file size limit. In Blender, use the Decimate modifier on your mesh to reduce polygon count — this maintains the general shape while dramatically reducing file size. You can also compress texture images in Photoshop or equivalent before embedding them. Flat color materials defined in Blender use no texture space at all, which is the most file-efficient approach.</p>
           <p><strong>Animated 3D models:</strong> 3D objects can include their own animation cycles (like a character walking or an object spinning). Upload them in a ZIP archive with all associated files. In the Timeline and Sequences features (Module 4 and 5), you can also trigger specific animations from a 3D model at defined moments.</p>
-          <iframe  width="425" height="344" src="https://www.youtube.com/watch?v=xjUqfdRpwx0&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=10" frameborder="0" allowfullscreen></iframe>
+           <iframe src="https://www.youtube-nocookie.com/embed/xjUqfdRpwx0?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="Working with 3D objects in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
       </article>
 
@@ -704,8 +712,18 @@
           </ul>
           <p>Experiment with these settings while watching the preview. Subtle, slow particle effects often work better with fine art — they add atmosphere without distracting from the work itself. High-density, fast effects are better suited to dynamic, energetic compositions.</p>
           <p>Particle effects are CPU-intensive on mobile devices. If you layer multiple particle effects on top of each other, test on a mid-range device to make sure the experience still runs smoothly.</p>
-          <a class="video-link" href="https://www.youtube.com/watch?v=L_5lKQAD0m4&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=4" target="_blank" rel="noopener">youtube.com/watch?v=L_5lKQAD0m4</a>
-          <a class="video-link" href="https://www.youtube.com/watch?v=v6WixgrWYKQ&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=6" target="_blank" rel="noopener">youtube.com/watch?v=v6WixgrWYKQ</a>
+          <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/L_5lKQAD0m4?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="Particle effects in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: particle effects, part 1</div>
+          </div>
+          <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/v6WixgrWYKQ?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="More particle effects in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: particle effects, part 2</div>
+          </div>
         </div>
       </article>
 
@@ -718,7 +736,12 @@
           <p><strong>Linear mode</strong> defines a hard boundary. Inside the outer sphere, volume scales linearly with distance. Outside the sphere, the sound is completely silent. This is useful when you want a sound to be clearly associated with a specific artwork — a viewer standing in front of a neighboring piece should hear nothing from yours.</p>
           <p>Both modes allow you to adjust the size of the inner and outer spheres directly in the editor. Larger spheres mean the audio activates from further away. Smaller spheres create a more intimate experience.</p>
           <p><strong>When to use spatial audio:</strong> Spatial audio is most effective in multi-artwork exhibitions where multiple AR pieces exist in the same physical space. It prevents audio from one artwork from bleeding into another's experience. For single-artwork experiences, standard audio is usually sufficient.</p>
-          <a class="video-link" href="https://www.youtube.com/watch?v=SOSIJAp6PyY&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=7" target="_blank" rel="noopener">youtube.com/watch?v=SOSIJAp6PyY</a>
+           <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/SOSIJAp6PyY?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="3D spatial audio in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: 3D spatial audio</div>
+          </div>
         </div>
       </article>
 
@@ -826,7 +849,12 @@
           <p><strong>Combining multiple actions on a single layer:</strong> A layer can have multiple Timeline actions applied to it simultaneously. For example, you can have a Move To and a Rotate To running at the same time on the same layer, creating a spinning drift effect. When two actions of the same type (like two Move To actions) overlap on the same layer, the one that ends later or sits on top in the timeline takes priority.</p>
           <p><strong>Transform To for natural motion:</strong> In the real world, objects rarely move in just one dimension. A falling leaf rotates and scales as it falls. A character reaching for something translates and rotates simultaneously. The Transform To action captures this multi-axis movement in a single step, giving you combined control over position, rotation, and scale with one unified speed curve. Use it whenever you want movement to feel organic rather than constructed.</p>
           <p><strong>Layering the Show action:</strong> The Show/Hide action is useful beyond simple appearance control. You can trigger sound layers at precise moments, cause visual elements to flash in sync with music, or build a sequential reveal where elements appear one after another. Time your Show actions carefully and use Preview Mode to verify the synchronization.</p>
-          <a class="video-link" href="https://www.youtube.com/watch?v=M3tM5WIKEQc&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=2" target="_blank" rel="noopener">youtube.com/watch?v=M3tM5WIKEQc</a>
+          <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/M3tM5WIKEQc?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="Timeline animation in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: animating with Timeline</div>
+          </div>
         </div>
       </article>
 
@@ -930,7 +958,12 @@
           <p><strong>Choose-your-own-path narratives:</strong> Design sequences as story branches. The Artwork Sequence introduces a scenario. Two tappable elements lead to Sequence A or Sequence B. Each ends with new choices. The viewer navigates the story through their decisions.</p>
           <p><strong>Guided exhibition experiences:</strong> In a gallery or museum context, use sequences to add optional depth. The default state is clean and unobtrusive. A "tap to learn more" element triggers additional information, contextual imagery, or artist commentary — available for viewers who want it, invisible to those who don't.</p>
           <p>The constraint is not technical — it is creative. If you can draw the logic diagram, Artivive can build it.</p>
-          <a class="video-link" href="https://www.youtube.com/watch?v=6I8VpeUdbWU&list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV&index=1" target="_blank" rel="noopener">youtube.com/watch?v=6I8VpeUdbWU</a>
+           <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/6I8VpeUdbWU?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="Building with Sequences in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: what you can build with Sequences</div>
+          </div>
         </div>
       </article>
 
