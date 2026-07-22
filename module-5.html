@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5 · Sequences — Learning Artivive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#dda6c2;
+  --sky:#5fa2c9;
+  --ink:#1a1a1a;
+  --body:#3d3d3d;
+  --muted:#6b6b6b;
+  --soft:#9a9a9a;
+  --page:#f5f5f5;
+  --edge:#e8e8e8;
+  --grad-cta: linear-gradient(90deg,#dda6c2, #5fa2c9);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Montserrat',Arial,sans-serif;
+  font-size:15px;line-height:1.7;color:var(--body);
+  background:#fff;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+h1,h2,h3{font-family:'Montserrat',Arial,sans-serif;color:var(--ink);font-feature-settings:"calt" 0,"liga" 0;}
+
+/* top bar */
+.top-bar{
+  height:64px;border-bottom:1px solid var(--edge);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;position:sticky;top:0;z-index:300;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+}
+.top-logo{font-weight:800;font-size:17px;color:var(--ink);display:flex;gap:8px;align-items:center;letter-spacing:-.01em;}
+.mark{width:8px;height:8px;border-radius:2px;background:var(--grad-cta);flex:0 0 auto;}
+.top-right{display:flex;align-items:center;gap:14px;}
+.free-badge{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sky);border:1px solid rgba(95,162,201,.3);background:rgba(95,162,201,.07);padding:5px 12px;border-radius:20px;}
+.menu-toggle{display:none;background:none;border:1px solid var(--edge);border-radius:6px;width:36px;height:36px;font-size:16px;cursor:pointer;color:var(--ink);}
+
+/* layout */
+.layout{display:flex;max-width:1320px;margin:0 auto;align-items:flex-start;}
+.layout.home{justify-content:center;}
+.layout.home .content{max-width:780px;}
+.layout.home .module-cards-head{margin-top:38px;}
+.sidebar{
+  width:272px;flex:0 0 272px;position:sticky;top:64px;
+  height:calc(100vh - 64px);overflow-y:auto;
+  padding:32px 22px 60px;border-right:1px solid var(--edge);
+}
+.sidebar-top-link{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:26px;padding:8px 10px;border-radius:6px;}
+.sidebar-top-link:hover{background:var(--page);}
+.sidebar-group{margin-bottom:20px;}
+.sidebar-group-title{display:flex;gap:9px;align-items:center;font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.sidebar-index{width:19px;height:19px;border-radius:5px;background:var(--grad-cta);color:#fff;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.sidebar-group ul{display:flex;flex-direction:column;gap:1px;margin-left:28px;border-left:1px solid var(--edge);}
+.sidebar-group a{display:block;font-size:12.5px;color:var(--muted);padding:6px 0 6px 14px;border-left:2px solid transparent;margin-left:-1px;}
+.sidebar-group a:hover{color:var(--ink);}
+.sidebar-group a.active{color:var(--sky);border-left-color:var(--sky);font-weight:600;}
+.sidebar-bottom{margin-top:26px;padding-top:18px;border-top:1px solid var(--edge);}
+.sidebar-bottom a{display:block;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 10px;border-radius:6px;}
+.sidebar-bottom a:hover{color:var(--ink);background:var(--page);}
+
+.sidebar-backdrop{display:none;}
+
+/* content */
+.content{flex:1;min-width:0;padding:56px 56px 110px;max-width:840px;}
+
+.intro{margin-bottom:64px;}
+.intro .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;display:block;}
+.intro h1{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.18;margin-bottom:18px;}
+.intro .lede{font-size:16.5px;color:var(--muted);max-width:640px;line-height:1.8;margin-bottom:26px;}
+.intro-facts{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
+.intro-facts div b{display:block;font-size:22px;font-weight:800;color:var(--ink);}
+.intro-facts div span{font-size:12px;color:var(--soft);}
+.intro-note{
+  background:var(--page);border:1px solid var(--edge);border-left:3px solid var(--sky);
+  border-radius:8px;padding:16px 20px;font-size:14px;color:var(--body);line-height:1.7;
+}
+
+/* save progress / email capture — optional, not a gate */
+.save-progress{background:#fff;border:1px solid var(--edge);border-radius:12px;padding:20px 22px;margin:18px 0 0;}
+.save-progress-form{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.save-progress-text{display:flex;flex-direction:column;gap:3px;max-width:340px;}
+.save-progress-text strong{font-size:14px;color:var(--ink);}
+.save-progress-text span{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.save-progress-input-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;}
+.save-progress-input-row input{font-family:'Montserrat',sans-serif;font-size:13.5px;padding:10px 14px;border-radius:8px;border:1px solid var(--edge);min-width:220px;color:var(--ink);}
+.save-progress-input-row input:focus{outline:2px solid var(--sky);outline-offset:1px;border-color:var(--sky);}
+.btn-save-progress{background:var(--grad-cta);color:#fff;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;padding:10.5px 20px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;font-family:'Montserrat',sans-serif;}
+.btn-save-progress:hover{transform:translateY(-1px);}
+.save-progress-done{display:none;align-items:center;gap:10px;}
+.save-progress.is-saved .save-progress-form{display:none;}
+.save-progress.is-saved .save-progress-done{display:flex;}
+.save-progress-done svg{width:18px;height:18px;color:var(--sky);flex:0 0 auto;}
+.save-progress-done p{font-size:13.5px;color:var(--body);margin:0;}
+.save-progress-done a{color:var(--sky);font-weight:600;}
+.save-progress-error{color:#c0524a;font-size:12px;margin-top:8px;width:100%;display:none;}
+.save-progress.has-error .save-progress-error{display:block;}
+
+.module-block{margin-top:0;}
+.module-head{margin-bottom:8px;padding-bottom:28px;border-bottom:1px solid var(--edge);margin-bottom:36px;}
+.module-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--sky);margin-bottom:12px;display:flex;gap:10px;align-items:center;}
+.module-badge{width:24px;height:24px;border-radius:6px;background:var(--grad-cta);color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.module-head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.01em;margin-bottom:8px;}
+.module-desc{color:var(--muted);font-size:14.5px;}
+
+/* diagrams — original illustrations, not stock photos */
+.diagram-flow{
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  padding:28px 24px;background:#fff;border:1px solid var(--edge);border-radius:14px;margin:22px 0 6px;
+}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:9px;flex:1;min-width:108px;max-width:170px;text-align:center;}
+.flow-step span{font-size:12px;font-weight:600;color:var(--body);line-height:1.4;}
+.flow-arrow{font-size:12.5px;font-weight:700;color:var(--sky);letter-spacing:.02em;flex:0 0 auto;white-space:nowrap;}
+
+.flow-icon{width:56px;height:56px;border-radius:12px;position:relative;background:var(--page);border:1px solid var(--edge);flex:0 0 auto;}
+.flow-icon.poster-mini{background:repeating-linear-gradient(45deg, rgba(95,162,201,.5) 0px, rgba(95,162,201,.5) 4px, rgba(221,166,194,.4) 4px, rgba(221,166,194,.4) 8px);}
+.flow-icon.scan-mini{background:#fff;}
+.flow-icon .vf-c.sm{position:absolute;width:12px;height:12px;}
+.flow-icon .vf-c.sm.tl{top:5px;left:5px;border-top:2px solid var(--sky);border-left:2px solid var(--sky);}
+.flow-icon .vf-c.sm.tr{top:5px;right:5px;border-top:2px solid var(--sky);border-right:2px solid var(--sky);}
+.flow-icon .vf-c.sm.bl{bottom:5px;left:5px;border-bottom:2px solid var(--sky);border-left:2px solid var(--sky);}
+.flow-icon .vf-c.sm.br{bottom:5px;right:5px;border-bottom:2px solid var(--sky);border-right:2px solid var(--sky);}
+.flow-icon.layers-mini .chip{position:absolute;width:24px;height:16px;border-radius:4px;box-shadow:0 3px 8px rgba(26,26,26,.16);}
+
+.step-num{width:38px;height:38px;border-radius:50%;background:var(--grad-cta);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+
+.compare-col{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;flex:0 0 auto;max-width:170px;}
+.compare-col span{font-size:12px;color:var(--muted);line-height:1.4;}
+.mini-poster{width:120px;height:86px;border-radius:8px;border:1px solid var(--edge);}
+.mini-poster.good-pattern{background:repeating-linear-gradient(45deg, rgba(95,162,201,.55) 0px, rgba(95,162,201,.55) 5px, rgba(221,166,194,.45) 5px, rgba(221,166,194,.45) 10px, rgba(26,26,26,.12) 10px, rgba(26,26,26,.12) 12px);}
+.mini-poster.poor-pattern{background:linear-gradient(180deg,#eef0f1,#e2e4e5);}
+.mini-stars{color:var(--sky);font-size:14px;letter-spacing:3px;}
+.mini-stars.dim{color:#dcdcdc;}
+.compare-divider{font-size:11px;font-weight:800;color:var(--soft);letter-spacing:.12em;flex:0 0 auto;}
+
+.format-card{background:var(--page);border:1px solid var(--edge);border-radius:10px;padding:18px 16px;text-align:center;flex:1;min-width:140px;}
+.format-icon{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg, rgba(221,166,194,.18), rgba(95,162,201,.16));border:1px solid rgba(95,162,201,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
+.format-icon svg{width:18px;height:18px;stroke:var(--sky);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.format-icon svg polygon{fill:var(--sky);stroke:none;}
+.format-card b{display:block;font-size:12.5px;color:var(--ink);margin-bottom:4px;}
+.format-card span{font-size:11px;color:var(--soft);line-height:1.5;}
+
+.diagram{position:relative;height:150px;background:#fff;border:1px solid var(--edge);border-radius:14px;margin:22px 0 6px;overflow:hidden;padding:0 26px;}
+.tl-track{position:absolute;left:8%;right:8%;top:46%;height:2px;background:var(--edge);}
+.tl-bar{position:absolute;height:5px;border-radius:3px;top:46%;background:var(--grad-cta);transform:translateY(-50%);}
+.tl-node{position:absolute;top:46%;width:13px;height:13px;border-radius:50%;background:var(--sky);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(95,162,201,.14);}
+.tl-dot-move{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--ink);top:46%;animation:moveDot 3.4s ease-in-out infinite;}
+@keyframes moveDot{0%{left:8%;transform:translate(-50%,-50%);}50%{left:78%;transform:translate(-50%,-50%);}100%{left:8%;transform:translate(-50%,-50%);}}
+.tl-label{position:absolute;top:64%;transform:translateX(-50%);font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap;}
+
+.seq-box{background:var(--page);border:1px solid var(--edge);border-radius:10px;padding:11px 16px;font-size:12.5px;font-weight:700;color:var(--ink);text-align:center;}
+.seq-box small{display:block;font-size:9.5px;font-weight:500;color:var(--soft);margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
+.seq-branch{display:flex;flex-direction:column;gap:8px;}
+
+@media(prefers-reduced-motion:reduce){ .tl-dot-move{animation:none;} }
+@media(max-width:600px){ .diagram-flow{gap:8px;padding:22px 16px;} .flow-arrow{width:100%;text-align:center;} }
+
+/* progressive unlock */
+.module-locked{display:none;align-items:center;gap:18px;background:var(--page);border:1px dashed var(--edge);border-radius:14px;padding:32px 28px;margin:22px 0 6px;}
+.module-block.is-locked .module-locked{display:flex;}
+.module-block.is-locked .module-body{display:none;}
+.lock-big{width:26px;height:26px;color:var(--soft);flex:0 0 auto;}
+.module-locked p{font-size:14px;color:var(--muted);margin:0;}
+.module-locked strong{color:var(--ink);}
+.module-locked a{color:var(--sky);font-weight:700;}
+
+.module-complete{margin-top:44px;padding-top:36px;border-top:1px solid var(--edge);}
+.complete-todo{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:var(--page);border:1px solid var(--edge);border-radius:12px;padding:20px 24px;}
+.complete-todo p{font-size:14px;font-weight:600;color:var(--ink);margin:0;}
+.btn-complete{background:var(--grad-cta);color:#fff;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;padding:12px 22px;border-radius:30px;border:none;cursor:pointer;white-space:nowrap;font-family:'Montserrat',sans-serif;}
+.btn-complete:hover{transform:translateY(-1px);}
+.complete-done{display:none;align-items:center;gap:12px;background:rgba(95,162,201,.08);border:1px solid rgba(95,162,201,.25);border-radius:12px;padding:18px 24px;}
+.module-block.is-completed .complete-todo{display:none;}
+.module-block.is-completed .complete-done{display:flex;}
+.complete-done svg{width:20px;height:20px;color:var(--sky);flex:0 0 auto;}
+.complete-done p{font-size:14px;color:var(--body);margin:0;}
+.complete-done p strong{color:var(--ink);}
+
+.sidebar-progress{font-size:11.5px;color:var(--soft);margin:-16px 0 20px;padding:0 10px;}
+.sidebar-group-name{flex:1;}
+.group-lock-icon,.group-check-icon{width:12px;height:12px;flex:0 0 auto;display:none;}
+.group-lock-icon{color:var(--soft);}
+.group-check-icon{color:var(--sky);}
+.sidebar-group.locked .group-lock-icon{display:block;}
+.sidebar-group.completed .group-check-icon{display:block;}
+.sidebar-group.locked .sidebar-group-name{color:var(--soft);}
+.sidebar-group.locked .sidebar-index{opacity:.45;}
+.sidebar-group.locked ul a{pointer-events:none;color:#d2d2d2;}
+.sidebar-group.current .sidebar-group-name{color:var(--sky);}
+.sidebar-reset{font-size:11.5px;color:var(--soft);}
+.sidebar-reset:hover{color:var(--sky);}
+
+.lesson{margin-top:44px;padding-top:40px;border-top:1px solid var(--edge);}
+.module-block .lesson:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+.lesson h3{font-size:19px;font-weight:700;margin-bottom:18px;display:flex;gap:10px;align-items:baseline;letter-spacing:-.005em;}
+.lesson-num-tag{font-size:13px;color:var(--sky);font-weight:800;flex:0 0 auto;}
+.lesson-body p{margin-bottom:14px;font-size:15.5px;line-height:1.85;color:var(--body);}
+.lesson-body p:last-child{margin-bottom:0;}
+.lesson-body strong{color:var(--ink);font-weight:700;}
+.lesson-body ul{margin:4px 0 18px;padding-left:0;display:flex;flex-direction:column;gap:9px;}
+.lesson-body ul li{font-size:15px;color:var(--body);padding-left:20px;position:relative;line-height:1.75;}
+.lesson-body ul li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--sky);border-radius:1px;transform:rotate(45deg);}
+.lesson-body ul li strong{color:var(--ink);}
+.video-link{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--sky);font-weight:600;margin-top:4px;word-break:break-all;}
+.video-link::before{content:'▶';font-size:10px;}
+.video-link:hover{text-decoration:underline;}
+
+/* embedded videos — same frame treatment as the infographics */
+.video-embed{background:#fff;border:1px solid var(--edge);border-radius:14px;padding:14px;margin:22px 0 6px;}
+.video-embed + .video-embed{margin-top:14px;}
+.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:9px;overflow:hidden;background:var(--page);}
+.video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.video-caption{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted);margin-top:11px;padding:0 2px;}
+.video-caption::before{content:'▶';font-size:9px;color:var(--sky);}
+
+/* faq */
+.faq-section{margin-top:88px;padding-top:44px;border-top:1px solid var(--edge);}
+.faq-item{border-top:1px solid var(--edge);}
+.faq-item:last-child{border-bottom:1px solid var(--edge);}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 2px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:15.5px;font-weight:700;color:var(--ink);}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item p{padding:0 2px 20px;max-width:700px;font-size:14.5px;color:var(--muted);line-height:1.75;}
+.faq-plus{font-size:17px;color:var(--sky);transition:transform .2s ease;flex:0 0 auto;font-weight:700;}
+.faq-item[open] .faq-plus{transform:rotate(45deg);}
+
+footer{margin-top:70px;padding-top:28px;border-top:1px solid var(--edge);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+footer p{font-size:12px;color:var(--soft);}
+footer a{font-size:12px;color:var(--sky);font-weight:600;}
+
+/* ===== NEW: multi-page module overview cards (index) ===== */
+.module-cards{display:flex;flex-direction:column;gap:16px;margin-top:8px;}
+.module-cards-head{margin:64px 0 4px;}
+.module-cards-head .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:10px;}
+.module-cards-head h2{font-size:26px;font-weight:800;letter-spacing:-.01em;}
+.lesson-figure{margin:20px 0 6px;}
+.lesson-figure img{display:block;width:100%;height:auto;border:1px solid var(--edge);border-radius:12px;background:#fff;}
+.lesson-figure figcaption{font-size:13px;color:var(--muted);margin-top:9px;text-align:center;font-style:italic;}
+.module-cards-sub{font-size:15px;color:var(--muted);margin-top:8px;}
+.module-cards + .save-progress{margin-top:40px;}
+.module-card{display:flex;align-items:center;gap:20px;border:1px solid var(--edge);border-radius:14px;padding:22px 24px;transition:border-color .15s ease,transform .15s ease;}
+.module-card:hover{border-color:var(--sky);transform:translateY(-1px);}
+.module-card .mc-badge{width:44px;height:44px;border-radius:10px;background:var(--grad-cta);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.module-card .mc-text{flex:1;min-width:0;}
+.module-card .mc-text b{display:block;font-size:16px;color:var(--ink);margin-bottom:3px;letter-spacing:-.005em;}
+.module-card .mc-text span{font-size:13px;color:var(--muted);line-height:1.6;}
+.module-card .mc-status{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;flex:0 0 auto;color:var(--sky);display:flex;align-items:center;gap:6px;}
+.module-card .mc-status svg{width:13px;height:13px;flex:0 0 auto;}
+.module-card.locked{opacity:.55;pointer-events:none;}
+.module-card.locked .mc-badge{opacity:.5;}
+.module-card.locked .mc-status{color:var(--soft);}
+.module-card.done .mc-status{color:var(--sky);}
+
+/* ===== NEW: prev / next page navigation ===== */
+.page-nav{display:flex;justify-content:space-between;gap:14px;margin-top:60px;padding-top:30px;border-top:1px solid var(--edge);flex-wrap:wrap;}
+.page-nav a{display:inline-flex;flex-direction:column;gap:3px;font-size:13.5px;font-weight:700;color:var(--ink);border:1px solid var(--edge);border-radius:12px;padding:13px 20px;min-width:160px;transition:border-color .15s ease,transform .15s ease;}
+.page-nav a:hover{border-color:var(--sky);transform:translateY(-1px);}
+.page-nav a small{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);}
+.page-nav a.next{margin-left:auto;text-align:right;align-items:flex-end;}
+.page-nav a.locked{opacity:.4;pointer-events:none;}
+
+@media(max-width:960px){
+  .menu-toggle{display:block;}
+  .sidebar{
+    position:fixed;top:0;left:-300px;width:280px;height:100vh;
+    background:#fff;z-index:400;transition:left .25s ease;
+    box-shadow:0 0 40px rgba(0,0,0,.15);padding-top:84px;
+  }
+  .sidebar.open{left:0;}
+  .sidebar-backdrop.show{
+    display:block;position:fixed;inset:0;background:rgba(0,0,0,.32);z-index:350;
+  }
+  .content{padding:40px 22px 90px;max-width:100%;}
+  .intro-facts{gap:20px;}
+}
+
+</style>
+</head>
+<body data-page="module" data-module="5">
+
+<div class="top-bar">
+  <div class="top-logo"><span class="mark"></span><a href="index.html">Artivive course</a></div>
+  <div class="top-right">
+    <span class="free-badge">Free · Self-paced</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</div>
+
+<div class="sidebar-backdrop" id="backdrop"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a href="index.html#top" class="sidebar-top-link">↑ Introduction</a>
+    <div class="sidebar-progress" id="sidebarProgress">0 of 5 modules complete</div>
+
+    <div class="sidebar-group" id="sidebar-group-1">
+      <div class="sidebar-group-title">
+        <span class="sidebar-index">01</span>
+        <span class="sidebar-group-name">Foundations</span>
+        <svg class="group-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <svg class="group-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <ul>
+        <li><a href="module-1.html#lesson-1-1">1.1 What is Artivive?</a></li>
+        <li><a href="module-1.html#lesson-1-2">1.2 Creating your account</a></li>
+        <li><a href="module-1.html#lesson-1-3">1.3 Choosing the right plan</a></li>
+        <li><a href="module-1.html#lesson-1-4">1.4 The Artivive Editor</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-group" id="sidebar-group-2">
+      <div class="sidebar-group-title">
+        <span class="sidebar-index">02</span>
+        <span class="sidebar-group-name">Trigger Images &amp; Layers</span>
+        <svg class="group-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <svg class="group-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <ul>
+        <li><a href="module-2.html#lesson-2-1">2.1 Understanding the trigger image</a></li>
+        <li><a href="module-2.html#lesson-2-2">2.2 Optimising image recognition</a></li>
+        <li><a href="module-2.html#lesson-2-3">2.3 Adding &amp; positioning layers</a></li>
+        <li><a href="module-2.html#lesson-2-4">2.4 Publishing &amp; previewing</a></li>
+        <li><a href="module-2.html#lesson-2-5">2.5 Viewing your AR experience</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-group" id="sidebar-group-3">
+      <div class="sidebar-group-title">
+        <span class="sidebar-index">03</span>
+        <span class="sidebar-group-name">File Formats &amp; Media</span>
+        <svg class="group-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <svg class="group-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <ul>
+        <li><a href="module-3.html#lesson-3-1">3.1 Formats &amp; size limits</a></li>
+        <li><a href="module-3.html#lesson-3-2">3.2 Video best practices</a></li>
+        <li><a href="module-3.html#lesson-3-3">3.3 Working with 3D objects</a></li>
+        <li><a href="module-3.html#lesson-3-4">3.4 Particle effect layers</a></li>
+        <li><a href="module-3.html#lesson-3-5">3.5 3D spatial audio</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-group" id="sidebar-group-4">
+      <div class="sidebar-group-title">
+        <span class="sidebar-index">04</span>
+        <span class="sidebar-group-name">Timeline</span>
+        <svg class="group-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <svg class="group-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <ul>
+        <li><a href="module-4.html#lesson-4-1">4.1 What is Timeline?</a></li>
+        <li><a href="module-4.html#lesson-4-2">4.2 The five core actions</a></li>
+        <li><a href="module-4.html#lesson-4-3">4.3 Speed curves &amp; duration</a></li>
+        <li><a href="module-4.html#lesson-4-4">4.4 Groups &amp; combined actions</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-group" id="sidebar-group-5">
+      <div class="sidebar-group-title">
+        <span class="sidebar-index">05</span>
+        <span class="sidebar-group-name">Sequences</span>
+        <svg class="group-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <svg class="group-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <ul>
+        <li><a href="module-5.html#lesson-5-1">5.1 Multi-state experiences</a></li>
+        <li><a href="module-5.html#lesson-5-2">5.2 Creating &amp; connecting sequences</a></li>
+        <li><a href="module-5.html#lesson-5-3">5.3 Advanced sequence actions</a></li>
+        <li><a href="module-5.html#lesson-5-4">5.4 Testing interactions</a></li>
+        <li><a href="module-5.html#lesson-5-5">5.5 What you can build</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-bottom">
+      <a href="index.html#faq">FAQ</a>
+      <a href="#" class="sidebar-reset" id="resetProgressBtn">Reset progress</a>
+    </div>
+  </aside>
+
+  <main class="content" id="top">
+
+    <section class="module-block" id="module-5">
+      <div class="module-head">
+        <div class="module-eyebrow"><span class="module-badge">05</span>Module 5</div>
+        <h2>Sequences: Building Interactive Experiences</h2>
+        <p class="module-desc">From playback the viewer watches, to states the viewer controls.</p>
+      </div>
+
+      <div class="module-body">
+      <div class="diagram-flow" role="img" aria-label="Diagram: the Idle sequence leads on tap to a Tap Reveal sequence, which branches into Sequence A that loops and Sequence B that resets">
+        <div class="seq-box">Idle</div>
+        <div class="flow-arrow">tap →</div>
+        <div class="seq-box">Tap Reveal</div>
+        <div class="flow-arrow">→</div>
+        <div class="seq-branch">
+          <div class="seq-box">Sequence A<small>Loop</small></div>
+          <div class="seq-box">Sequence B<small>Reset</small></div>
+        </div>
+      </div>
+
+      <article class="lesson" id="lesson-5-1">
+        <h3><span class="lesson-num-tag">5.1</span> From linear animation to multi-state experiences</h3>
+        <div class="lesson-body">
+          <p>Linear animation has a clear limitation: it plays once (or loops) regardless of what the viewer does. The viewer is passive. Sequences changes that relationship.</p>
+          <p>A Sequence is a separate "state" of your artwork. Your artwork always starts in the Artwork Sequence — the idle state that plays by default when someone first scans your trigger image. You can leave this empty (showing a static image) or fill it with an animation.</p>
+          <p>From there, you can add as many additional sequences as you like. Each sequence is a fully independent animation timeline with its own layers, actions, and timing. Sequences can be triggered by viewer taps, by the completion of another sequence, or by a timer.</p>
+          <p><strong>The conceptual shift:</strong> Instead of thinking "what happens when someone scans this artwork," start thinking "what are the different states this artwork can be in, and what moves it from one state to another." This is the same mental model used in game design and interactive media.</p>
+          <p>A simple example: an artwork starts in an idle state showing a gentle floating animation. When the viewer taps a specific element, a new sequence plays — perhaps a transformation, a reveal, or an entirely different visual world. When that sequence ends, the artwork returns to the idle state (or moves to another sequence, depending on your logic).</p>
+        </div>
+      </article>
+
+      <article class="lesson" id="lesson-5-2">
+        <h3><span class="lesson-num-tag">5.2</span> Creating and connecting sequences</h3>
+        <div class="lesson-body">
+          <p><strong>Adding sequences:</strong> Open the Timeline panel. You are currently in the Artwork Sequence. Click the + icon next to the Sequences title to add a new sequence. Name it something descriptive — "Intro," "Tap Reveal," "End State" — rather than leaving it as Sequence 1, Sequence 2.</p>
+          <p><strong>Animating within sequences:</strong> Each sequence has its own timeline. The same five core actions from Timeline (Move To, Rotate To, Scale By, Transform To, Show/Hide) are available. Each sequence also has its own Duration, controlling how long it plays before it reaches its end.</p>
+          <p><strong>Connecting sequences via interactions:</strong> To link one sequence to another, you need to create a tap interaction. Select the layer that should be tappable. In the layer settings, add an On Tap interaction and choose Trigger Sequence from the interaction options. Then select which sequence that layer should trigger.</p>
+          <p>That layer is now interactive. When a viewer taps it in the AR experience, the corresponding sequence begins playing.</p>
+          <p><strong>Loop vs Reset:</strong> When a sequence ends, you choose what happens:</p>
+          <ul>
+            <li><strong>Loop</strong> causes the sequence to replay continuously from the beginning.</li>
+            <li><strong>Reset</strong> returns all layers affected by that sequence to their original state (their appearance before the sequence began).</li>
+          </ul>
+          <p>Choose Loop for ambient states that should continue until something else triggers a change. Choose Reset for one-shot effects that should leave the artwork clean afterward.</p>
+        </div>
+      </article>
+
+      <article class="lesson" id="lesson-5-3">
+        <h3><span class="lesson-num-tag">5.3</span> Advanced sequence actions</h3>
+        <div class="lesson-body">
+          <p>Beyond the core animation actions, Sequences introduces three additional actions designed specifically for managing complex interactive logic.</p>
+          <p><strong>Manage Sequence</strong> acts as a flow controller. Rather than waiting for a sequence to run to completion, you can place a Manage Sequence action on any timeline to play or stop another sequence at a defined moment. This lets you chain sequences together, create interrupts, or build timed progressions. For example: Sequence A plays for 5 seconds, then a Manage Sequence action at second 5 triggers Sequence B to begin — creating a seamless multi-part narrative.</p>
+          <p><strong>Change Interaction</strong> lets you modify what happens when a layer is tapped, mid-experience. A layer can start with no interaction, then become a button that opens a link, then transition to triggering a new sequence. This means a single visual element can change its function as the experience progresses, creating richer interactive logic without adding more layers.</p>
+          <p><strong>Play Animation</strong> is specifically for 3D models with multiple embedded animation cycles. It lets you trigger different animations from the same model at specific moments — for example, a character that stands idle by default, then waves when tapped, then walks when tapped again. Each Play Animation action can wait for the previous animation to finish (for smooth transitions) or interrupt it immediately (for responsive, reactive behavior).</p>
+          <p><strong>An important behavior to understand:</strong> When a new sequence is triggered, it does not automatically stop other sequences that are already running. Multiple sequences can play simultaneously, layering their effects on top of each other. This is powerful — it allows you to build complex, multi-dimensional experiences — but it also means you need to consciously manage what is playing. Use Manage Sequence to stop sequences that should not continue running when new ones begin.</p>
+        </div>
+      </article>
+
+      <article class="lesson" id="lesson-5-4">
+        <h3><span class="lesson-num-tag">5.4</span> Using Preview Mode to test interactions</h3>
+        <div class="lesson-body">
+          <p>Interactive logic is hard to reason about without being able to test it. Preview Mode is essential for Sequences work.</p>
+          <p>Access Preview Mode via its dedicated tab in the editor. You will see your artwork rendered exactly as a viewer would see it. You can tap elements, trigger sequences, and watch the experience unfold. A notification appears each time a sequence starts or stops, giving you a real-time log of what is happening.</p>
+          <p><strong>What to check in Preview Mode:</strong></p>
+          <p>Does each tappable layer respond correctly? Tap every interactive element and verify that the right sequence triggers.</p>
+          <p>Do sequences end as intended? Watch through each sequence to its completion and confirm it loops, resets, or chains as configured.</p>
+          <p>Are there unintended overlaps? If you tap something and notice an unexpected layering of animations, you likely have sequences running simultaneously when they shouldn't. Use Manage Sequence to add stop actions at the right moments.</p>
+          <p>Does the timing feel right? Something that looks correct in the editor configuration can feel too fast or too slow in the actual experience. Adjust action bar lengths and test again.</p>
+          <p><strong>Iteration is normal.</strong> Complex Sequences projects often require many rounds of Preview, adjust, Preview again. Build one connection at a time, test it, confirm it works, then build the next. Do not try to configure the entire experience and test it all at once — debugging a complex web of sequences is much harder than catching individual issues early.</p>
+        </div>
+      </article>
+
+      <article class="lesson" id="lesson-5-5">
+        <h3><span class="lesson-num-tag">5.5</span> What you can build with Sequences</h3>
+        <div class="lesson-body">
+          <p>Sequences unlocks a category of AR experience that goes well beyond animation: interactive, reactive, multi-path experiences. Here is a survey of what creators are already building with this feature.</p>
+          <p><strong>Games and playable experiences:</strong> Sequences supports tap-based game logic. Tic-tac-toe, reaction games, memory puzzles, and choice-based interactions are all achievable. The On Tap interaction combined with Manage Sequence and Change Interaction gives you the building blocks for turn-based logic.</p>
+          <p><strong>Musical instruments:</strong> Create an AR piano, drum pad, or musical instrument by mapping each note or sound element to a layer. Each layer triggers a sequence that plays a sound when tapped. Combine with spatial positioning to lay elements out like a real instrument.</p>
+          <p><strong>Interactive video storytelling:</strong> Build a main video sequence that plays when the artwork is scanned, then offer tappable details that open new scenes. A portrait that comes to life might have tappable objects in the background that reveal backstory. Tapping the character's hands might trigger a different narrative path than tapping their eyes.</p>
+          <p><strong>Choose-your-own-path narratives:</strong> Design sequences as story branches. The Artwork Sequence introduces a scenario. Two tappable elements lead to Sequence A or Sequence B. Each ends with new choices. The viewer navigates the story through their decisions.</p>
+          <p><strong>Guided exhibition experiences:</strong> In a gallery or museum context, use sequences to add optional depth. The default state is clean and unobtrusive. A "tap to learn more" element triggers additional information, contextual imagery, or artist commentary — available for viewers who want it, invisible to those who don't.</p>
+          <p>The constraint is not technical — it is creative. If you can draw the logic diagram, Artivive can build it.</p>
+          <div class="video-embed">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/6I8VpeUdbWU?list=PLyayy5KwQ6IvFRHj67oTR_a4P47T5auDV" title="Building with Sequences in Artivive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="video-caption">Watch: what you can build with Sequences</div>
+          </div>
+        </div>
+      </article>
+
+      <div class="module-complete">
+        <div class="complete-todo">
+          <p>Finished Module 5?</p>
+          <button class="btn-complete" type="button" data-module="5">Mark Module 5 Complete</button>
+        </div>
+        <div class="complete-done">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Module 5 complete.</strong> You've finished the course.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <nav class="page-nav">
+      <a class="prev" href="module-4.html"><small>← Previous</small>Module 4 · Timeline</a>
+      <a class="next" href="index.html"><small>Finish →</small>Back to course home</a>
+    </nav>
+
+  </main>
+</div>
+
+<script>
+/* ============================================================
+   Artivive course — shared logic across all pages.
+   Reads which page it is on from <body data-page> / data-module.
+   ============================================================ */
+(function(){
+  'use strict';
+
+  var TOTAL_MODULES = 5;
+  var PROGRESS_KEY = 'module-progress';
+  var EMAIL_KEY = 'learner-email';
+
+  var MODULE_TITLES = {
+    1: 'Foundations',
+    2: 'Trigger Images & Digital Layers',
+    3: 'File Formats & Media Craft',
+    4: 'Timeline: Animating Your Artwork',
+    5: 'Sequences: Building Interactive Experiences'
+  };
+
+  /* ---- integration config (fill in to connect ActiveCampaign) ---- */
+  var MAKE_WEBHOOK_URL = '';   // e.g. https://hook.us1.make.com/xxxxxxxxxxxxxxxxxxxx
+  var AC_ACTID = '';           // e.g. 1234567
+  var AC_EVENT_KEY = '';       // e.g. 93f120c55fa6caf9dabc1430d8b4232efead5dfe
+
+  /* ------------------------------------------------------------------
+     Storage abstraction.
+     - In the Claude artifact preview, window.storage is available (async).
+     - On a real hosted site, we fall back to localStorage (sync).
+     - As a last resort, an in-memory object (progress won't persist).
+     Everything is wrapped in Promises so callers can treat it uniformly.
+  ------------------------------------------------------------------ */
+  var mem = {};
+  function hasWinStorage(){ return typeof window.storage !== 'undefined' && window.storage; }
+
+  function storeGet(key){
+    if(hasWinStorage()){
+      return window.storage.get(key, false)
+        .then(function(r){ return (r && r.value != null) ? r.value : null; })
+        .catch(function(){ return null; });
+    }
+    try { return Promise.resolve(localStorage.getItem(key)); }
+    catch(e){ return Promise.resolve(Object.prototype.hasOwnProperty.call(mem, key) ? mem[key] : null); }
+  }
+
+  function storeSet(key, value){
+    if(hasWinStorage()){
+      return window.storage.set(key, value, false).catch(function(e){ console.error('storage.set failed', e); });
+    }
+    try { localStorage.setItem(key, value); return Promise.resolve(); }
+    catch(e){ mem[key] = value; return Promise.resolve(); }
+  }
+
+  /* ---- shared mutable state ---- */
+  var progress = { completed: [] };
+  var email = '';
+
+  /* =====================  INTEGRATIONS  ===================== */
+  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function sendEvent(eventName, extra){
+    if(!email) return; // no identified contact yet — nothing to attach to
+    if(MAKE_WEBHOOK_URL){
+      var payload = { event: eventName, email: email, course: 'Learning Artivive', timestamp: new Date().toISOString() };
+      for(var k in extra){ if(extra.hasOwnProperty(k)) payload[k] = extra[k]; }
+      fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      }).catch(function(e){ console.warn('Make.com webhook failed', e); });
+    }
+    if(AC_ACTID && AC_EVENT_KEY){
+      var body = 'actid=' + encodeURIComponent(AC_ACTID) +
+        '&key=' + encodeURIComponent(AC_EVENT_KEY) +
+        '&event=' + encodeURIComponent(eventName) +
+        '&eventdata=' + encodeURIComponent(JSON.stringify(extra || {})) +
+        '&visit=' + encodeURIComponent(JSON.stringify({ email: email }));
+      fetch('https://trackcmp.net/event', {
+        method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body
+      }).catch(function(e){ console.warn('ActiveCampaign event failed', e); });
+    }
+  }
+
+  function trackModuleComplete(m){
+    sendEvent('module_' + m + '_complete', { module: m, moduleTitle: MODULE_TITLES[m] || '' });
+    if(m === TOTAL_MODULES) sendEvent('course_complete', {});
+  }
+
+  /* =====================  MOBILE MENU  ===================== */
+  function initMenu(){
+    var menuToggle = document.getElementById('menuToggle');
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.getElementById('backdrop');
+    if(!menuToggle || !sidebar || !backdrop) return;
+    function close(){ sidebar.classList.remove('open'); backdrop.classList.remove('show'); }
+    menuToggle.addEventListener('click', function(){
+      sidebar.classList.toggle('open'); backdrop.classList.toggle('show');
+    });
+    backdrop.addEventListener('click', close);
+    document.querySelectorAll('.sidebar a').forEach(function(a){ a.addEventListener('click', close); });
+  }
+
+  /* =====================  SIDEBAR STATE  ===================== */
+  function currentModule(){
+    var m = document.body.getAttribute('data-module');
+    return m ? parseInt(m, 10) : 0;
+  }
+
+  function applySidebarState(){
+    var cur = currentModule();
+    for(var m = 1; m <= TOTAL_MODULES; m++){
+      var group = document.getElementById('sidebar-group-' + m);
+      if(!group) continue;
+      var completed = progress.completed.indexOf(m) > -1;
+      group.classList.remove('locked');
+      group.classList.toggle('completed', completed);
+      group.classList.toggle('current', m === cur);
+    }
+    var progEl = document.getElementById('sidebarProgress');
+    if(progEl) progEl.textContent = progress.completed.length + ' of ' + TOTAL_MODULES + ' modules complete';
+  }
+
+  /* =====================  INDEX: MODULE CARDS  ===================== */
+  function applyCardState(){
+    document.querySelectorAll('.module-card').forEach(function(card){
+      var m = parseInt(card.getAttribute('data-module'), 10);
+      var completed = progress.completed.indexOf(m) > -1;
+      card.classList.remove('locked');
+      card.classList.toggle('done', completed);
+      var status = card.querySelector('.mc-status-text');
+      if(status){
+        status.textContent = completed ? 'Completed' : 'Start module';
+      }
+    });
+  }
+
+  /* =====================  MODULE PAGE STATE  ===================== */
+  function applyModulePageState(){
+    var m = currentModule();
+    if(!m) return;
+    var block = document.getElementById('module-' + m);
+    if(!block) return;
+    var completed = progress.completed.indexOf(m) > -1;
+    block.classList.remove('is-locked');
+    block.classList.toggle('is-completed', completed);
+
+    // modules are freely accessible — the next link is never gated
+    var nextLink = document.querySelector('.page-nav a.next');
+    if(nextLink){ nextLink.classList.remove('locked'); }
+  }
+
+  /* =====================  PROGRESS I/O  ===================== */
+  function loadProgress(){
+    return storeGet(PROGRESS_KEY).then(function(val){
+      if(val){
+        try{
+          var parsed = JSON.parse(val);
+          if(parsed && Array.isArray(parsed.completed)) progress = parsed;
+        }catch(e){ /* keep default */ }
+      }
+    });
+  }
+
+  function saveProgress(){ return storeSet(PROGRESS_KEY, JSON.stringify(progress)); }
+
+  function completeModule(m){
+    if(progress.completed.indexOf(m) === -1){
+      progress.completed.push(m);
+      saveProgress();
+    }
+    applySidebarState();
+    applyModulePageState();
+    applyCardState();
+    trackModuleComplete(m);
+  }
+
+  function resetProgress(){
+    progress = { completed: [] };
+    saveProgress();
+    applySidebarState();
+    applyModulePageState();
+    applyCardState();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* =====================  EMAIL CAPTURE (index)  ===================== */
+  function showSavedState(){
+    var card = document.getElementById('saveProgress');
+    var display = document.getElementById('savedEmailDisplay');
+    if(!card) return;
+    card.classList.add('is-saved');
+    card.classList.remove('has-error');
+    if(display) display.textContent = email;
+  }
+  function showFormState(){
+    var card = document.getElementById('saveProgress');
+    var input = document.getElementById('saveProgressEmail');
+    if(!card) return;
+    card.classList.remove('is-saved');
+    if(input) input.value = email;
+  }
+  function initEmailCapture(){
+    var saveBtn = document.getElementById('saveProgressBtn');
+    var emailInput = document.getElementById('saveProgressEmail');
+    var changeLink = document.getElementById('changeEmailLink');
+    var card = document.getElementById('saveProgress');
+    if(saveBtn && emailInput){
+      saveBtn.addEventListener('click', function(){
+        var value = emailInput.value.trim();
+        if(!isValidEmail(value)){ if(card) card.classList.add('has-error'); return; }
+        email = value;
+        storeSet(EMAIL_KEY, email);
+        showSavedState();
+        sendEvent('email_captured', {});
+      });
+    }
+    if(changeLink){
+      changeLink.addEventListener('click', function(e){ e.preventDefault(); showFormState(); });
+    }
+  }
+
+  /* =====================  SCROLL SPY (within a page)  ===================== */
+  function initScrollSpy(){
+    var lessons = document.querySelectorAll('.lesson[id]');
+    if(!lessons.length || !('IntersectionObserver' in window)) return;
+    var links = document.querySelectorAll('.sidebar-group a');
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var link = document.querySelector('.sidebar-group a[href$="#' + entry.target.id + '"]');
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    lessons.forEach(function(l){ observer.observe(l); });
+  }
+
+  /* =====================  COMMON WIRING  ===================== */
+  function initButtons(){
+    document.querySelectorAll('.btn-complete').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        completeModule(parseInt(btn.getAttribute('data-module'), 10));
+      });
+    });
+    var resetBtn = document.getElementById('resetProgressBtn');
+    if(resetBtn){
+      resetBtn.addEventListener('click', function(e){ e.preventDefault(); resetProgress(); });
+    }
+  }
+
+  /* =====================  BOOT  ===================== */
+  document.addEventListener('DOMContentLoaded', function(){
+    initMenu();
+    initButtons();
+    initScrollSpy();
+    initEmailCapture();
+
+    // load persisted state, then paint
+    Promise.all([
+      loadProgress(),
+      storeGet(EMAIL_KEY).then(function(v){ if(v){ email = v; } })
+    ]).then(function(){
+      applySidebarState();
+      applyModulePageState();
+      applyCardState();
+      if(email && document.getElementById('saveProgress')) showSavedState();
+    });
+  });
+
+  // expose for any inline needs / debugging
+  window.CourseApp = { sendEvent: sendEvent, trackModuleComplete: trackModuleComplete };
+})();
+
+</script>
+</body>
+</html>
