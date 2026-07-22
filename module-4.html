@@ -44,6 +44,9 @@ h1,h2,h3{font-family:'Montserrat',Arial,sans-serif;color:var(--ink);font-feature
 
 /* layout */
 .layout{display:flex;max-width:1320px;margin:0 auto;align-items:flex-start;}
+.layout.home{justify-content:center;}
+.layout.home .content{max-width:780px;}
+.layout.home .module-cards-head{margin-top:38px;}
 .sidebar{
   width:272px;flex:0 0 272px;position:sticky;top:64px;
   height:calc(100vh - 64px);overflow-y:auto;
@@ -235,6 +238,9 @@ footer a{font-size:12px;color:var(--sky);font-weight:600;}
 .module-cards-head{margin:64px 0 4px;}
 .module-cards-head .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:10px;}
 .module-cards-head h2{font-size:26px;font-weight:800;letter-spacing:-.01em;}
+.lesson-figure{margin:20px 0 6px;}
+.lesson-figure img{display:block;width:100%;height:auto;border:1px solid var(--edge);border-radius:12px;background:#fff;}
+.lesson-figure figcaption{font-size:13px;color:var(--muted);margin-top:9px;text-align:center;font-style:italic;}
 .module-cards-sub{font-size:15px;color:var(--muted);margin-top:8px;}
 .module-cards + .save-progress{margin-top:40px;}
 .module-card{display:flex;align-items:center;gap:20px;border:1px solid var(--edge);border-radius:14px;padding:22px 24px;transition:border-color .15s ease,transform .15s ease;}
@@ -427,10 +433,22 @@ footer a{font-size:12px;color:var(--sky);font-weight:600;}
           <p>Open the Timeline panel by clicking the button at the bottom center of the editor. You will see the timeline interface — a horizontal sequence of tracks, one per layer, with a panel on the right showing available actions.</p>
           <p>Every animation in Timeline is built from five core actions. Each action is added by clicking it or dragging it onto the timeline track for a specific layer.</p>
           <p><strong>Move To:</strong> Moves a layer from its current position to a new position over the duration of the action bar. The dotted line and blue preview in the editor show the layer's final position. Drag the blue preview to set where the layer will end up.</p>
+          <video autoplay loop muted width="500" height="300" src="./images/move to -1 .webm">
+          </video>
+
           <p><strong>Rotate To:</strong> Rotates a layer by a specified number of degrees. You set the rotation amount in the action's settings. Useful for spinning elements, tilting objects, or adding subtle swaying motion.</p>
+           <video autoplay loop muted width="500" height="300" src="./images/rotate to -1.webm">
+          </video>
           <p><strong>Scale By:</strong> Resizes a layer by a multiplier. A Scale By value of 2 doubles the layer's size. 0.5 shrinks it to half. Use this for zoom effects, pulsing, or growing reveals.</p>
+          <video autoplay loop muted width="500" height="300" src="./images/scale by.webm">
+          </video>
           <p><strong>Transform To:</strong> Combines Move To, Rotate To, and Scale By into a single action. Use this when you want a layer to simultaneously translate, rotate, and scale — which creates much more natural, organic movement than applying the three actions separately.</p>
+          <video autoplay loop muted width="500" height="300" src="./images/transfrom.webm">
+          </video>
           <p><strong>Show / Hide:</strong> Controls visibility at a specific moment. Unlike the other actions, Show/Hide has no duration — it is a point-in-time trigger. Place a Hide action at second 3 on a layer's track to make it vanish at exactly that moment. Use multiple Show/Hide actions on the same layer to create flickering, sequential reveals, or synchronized appearances.</p>
+           <video autoplay loop muted width="500" height="300" src="./images/show_zoomed in .webm">
+          </video>
+          <br>
           <p><strong>Connecting actions to layers:</strong> When you add an action to the timeline, it appears with an orange icon, indicating it is not yet connected to a layer. Select the action, then use the "Layer to Affect" dropdown on the left to connect it to the layer you want to animate. Name your layers in advance — navigating a list of unnamed layers in a complex project is frustrating.</p>
           <p><strong>Adjusting speed:</strong> The length of an action bar on the timeline directly controls the duration of that action. Drag the right edge of a bar to make it longer (slower) or shorter (faster).</p>
         </div>
@@ -479,7 +497,7 @@ footer a{font-size:12px;color:var(--sky);font-weight:600;}
         </div>
         <div class="complete-done">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <p><strong>Module 4 complete.</strong> Module 5 is now unlocked.</p>
+          <p><strong>Module 4 complete.</strong> Nice work — on to Module 5 whenever you are.</p>
         </div>
       </div>
       </div>
